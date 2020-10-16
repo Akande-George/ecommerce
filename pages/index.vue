@@ -9,7 +9,7 @@
               <h1 class="display-2 font-weight-black indigo--text text--darken-4" 6rem>The Future in</h1>
               <h1 class="display-2 font-weight-black deep-orange--text text--darken-4 pt-5" 6rem>Renewable Energy</h1>
               <p class="subtitle-1 pt-4 indigo--text text--darken-4">We supply homes and business  with  renewable energy solutions that deliver financial savings and carbon reductions.</p>
-              <v-btn depressed large color="indigo darken-4" class="mr-6" rounded dark to="/shop">
+              <v-btn depressed large color="indigo darken-4" class="mr-6" rounded dark to="/store">
                   Shop
               </v-btn>
               <v-btn depressed large rounded class="" to="/contact">
