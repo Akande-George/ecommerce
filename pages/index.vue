@@ -27,12 +27,12 @@
         <section id="three" class="py-12 text-center">
         <h1 class="indigo--text text--darken-4 mt-6">Featured <span class="deep-orange--text text--darken-4">Products</span></h1>
         <v-container>
-          <v-row class="col-11 mx-auto">
-            <div class="col-md-3 col-sm-6 col-xs-12" v-for="product in products" :key="product.id">
-              <Product :productName="product.productName" :price="product.price" :salePrice="product.salePrice" :src="require(`../assets/${product.src}.png`)" :link="product.link" />
-            </div>
-          </v-row>
-        </v-container>
+              <v-row class="col-11 mx-auto">
+                <div class="col-md-4 col-sm-6 col-xs-12" v-for="product in products" :key="product.id">
+                <Product :productName="product.name" :price="product.price" :salePrice="product.price" :src="product.imageURL" :description="product.description" :link="`/store/${product.id}`"/>
+                </div>
+            </v-row>
+          </v-container>
       </section>
       <section id="four" class="py-12 text-center">
         <h1 class="indigo--text text--darken-4 mt-6">Our <span class="deep-orange--text text--darken-4">Clients</span></h1>
@@ -69,6 +69,7 @@
 import Navbar from '~/components/Navbar'
 import Product from '~/components/Product'
 import Footer from '~/components/Footer'
+import axios from 'axios'
 
 export default {
   components: {
@@ -76,43 +77,21 @@ export default {
     Product,
     Footer
   },
+  async asyncData () {
+        const {data} = await axios.get(`https://schon-api.herokuapp.com/user/account/product`)
+        return {
+            products: data.data.products,
+        }
+        console.log(data.data.products)
+    },
   data () {
     return {
-      products: [
-        {
-          productName: 'Birthday',
-          price: '300',
-          salePrice: '200',
-          src: 'product1',
-          link: '/shop/product',
-          rating: '4'
-        },
-        {
-          productName: 'Anniversary',
-          price: '400',
-          salePrice: '270',
-          src: 'product2',
-          link: '/shop/product',
-          rating: '4'
-        },
-        {
-          productName: 'Christmas',
-          price: '300',
-          salePrice: '210',
-          src: 'product3',
-          link: '/shop/product',
-          rating: '4'
-        },
-        {
-          productName: "Valetine's Day",
-          price: '1300',
-          salePrice: '290',
-          src: 'product4',
-          link: '/shop/product',
-          rating: '4'
-        }
-      ]
+      
     }
+  },
+
+  mounted () {
+    this.products.splice(3)
   }
 }
 </script>
