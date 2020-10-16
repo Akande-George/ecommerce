@@ -129,6 +129,10 @@ export default {
         this.$refs.form.reset()
       },
     },
+
+    mounted () {
+      this.$refs.form.reset()
+    }
 }
 </script>
 

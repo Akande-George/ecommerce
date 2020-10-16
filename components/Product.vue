@@ -25,7 +25,7 @@
     <v-card-text>
       <v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text text-center" column>
         <v-spacer></v-spacer>
-        <v-chip class="indigo darken-4 white--text" >Add to Cart</v-chip>
+        <v-btn class="indigo darken-4 white--text" >Add to Cart</v-btn>
         <v-spacer></v-spacer>
       </v-chip-group>
     </v-card-text>

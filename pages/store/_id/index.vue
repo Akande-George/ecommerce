@@ -70,6 +70,7 @@
                                     <v-btn
                                     block
                                     class="black--text"
+                                    to="/checkout"
                                 >
                                     Checkout
                                 </v-btn>

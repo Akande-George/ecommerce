@@ -23,10 +23,29 @@
 <script>
 import Navbar from '~/components/Navbar'
 import CheckoutForm from '~/components/CheckoutForm'
+import axios from 'axios'
 export default {
     components: {
         Navbar,
         CheckoutForm
+    },
+    async asyncData () {
+        const {data} = await axios.get(`https://schon-api.herokuapp.com/user/account/product`)
+        return {
+            products: data.data.products,
+        }
+        console.log(data.data.products)
+    },
+    data () {
+        
+    },
+    computed: {
+        currentProduct () {
+            return this.products.find(p =>  p.id == this.$route.params.id)
+        }
+    },
+    mounted () {
+
     }
 }
 </script>
