@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import store from '~/store'
   export default {
     data: () => ({
       loading: false,
@@ -47,5 +48,11 @@
         setTimeout(() => (this.loading = false), 2000)
       },
     },
+    created () {
+        async products => {
+        const {data} = await axios.get(`https://schon-api.herokuapp.com/user/account/product`)
+        this.$store.state.products = data.data.products
+      }
+    }
   }
 </script>

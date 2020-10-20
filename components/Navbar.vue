@@ -29,8 +29,10 @@
             <v-btn icon to="/cart">
                 <v-icon x-large>mdi-cart</v-icon>
             </v-btn>
-
-            <v-btn color="deep-orange darken-4" rounded dark large>
+            <v-btn color="deep-orange darken-4" to="/login" outlined rounded dark large>
+                Login
+            </v-btn>
+            <v-btn color="deep-orange darken-4" to="/register" rounded dark large>
                 Sign up
             </v-btn>
         </div>

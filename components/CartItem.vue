@@ -4,11 +4,11 @@
           <v-card flat>
               <v-row>
                   <div class="col-2">
-                      <img src="../assets/product1.png" width="100%" class="rounded" alt="">
+                      <img :src="src" width="100%" class="rounded" alt="">
                   </div>
                   <div class="col-3">
-                      <p class="title">Alien Ware</p>
-                      <p>Lorem ipsum dolor sit amet consectetur</p>
+                      <p class="title">{{ name }}</p>
+                      <p>{{ description }}</p>
                   </div>
                   <div class="col">
                       <v-card-actions class="pt-7">
@@ -38,7 +38,7 @@
                       </v-card-actions>
                   </div>
                   <div class="col-2">
-                      <p class="title mt-10">$ <span>400</span></p>
+                      <p class="title mt-10">$ <span>{{ price }}</span></p>
                   </div>
                   <div class="col">
                       <v-btn
@@ -62,7 +62,7 @@
 
 <script>
 export default {
-
+    props: ['name', 'price', 'description', 'src']
 }
 </script>
 
