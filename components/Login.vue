@@ -6,19 +6,18 @@
             ref="form"
             v-model="valid"
             lazy-validation
+            @submit.prevent="onSubmit"
         >
 
             <v-text-field
-            v-model="email"
-            :rules="emailRules"
+            v-model="form.email"
             label="E-mail"
             required
             filled
             ></v-text-field>
 
             <v-text-field
-            v-model="password"
-            :rules="passwordRules"
+            v-model="form.password"
             label="Password"
             required
             filled
@@ -26,16 +25,15 @@
 
             <v-checkbox
             v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
             label="Do you agree?"
             required
             ></v-checkbox>
 
             <v-btn
             :disabled="!valid"
+            type="submit"
             color="deep-orange darken-4 white--text"
             class="mr-4"
-            @click="validate"
             >
             Validate
             </v-btn>
@@ -56,28 +54,25 @@
 export default {
     data: () => ({
       valid: true,
-      password: '',
-      passwordRules: [
-        v => !!v || 'Full Name is required',
-        v => (v && v.length <= 30) || 'Name must be less than 30 characters',
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
+      form: {
+        password: '',
+        email: '',
+      },
       checkbox: false,
     }),
 
     methods: {
-      validate () {
-        this.$refs.form.validate()
+      async onSubmit () {
+        // this.$refs.form.validate()
+        try {
+          let response = await this.$auth.loginWith('local', { data: this.form })
+         console.log(response)
+        } catch (err) {
+            console.log(err)
+        }
       },
       reset () {
         this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
       },
     },
 }

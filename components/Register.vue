@@ -26,7 +26,6 @@
 
             <v-text-field
             v-model="password"
-            :rules="passwordRules"
             label="Password"
             required
             filled
@@ -34,8 +33,6 @@
 
             <v-select
             v-model="select"
-            :items="items"
-            :rules="[v => !!v || 'User is required']"
             label="user"
             required
             filled
@@ -43,7 +40,6 @@
 
             <v-checkbox
             v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
             label="Do you agree?"
             required
             ></v-checkbox>
@@ -52,7 +48,6 @@
             :disabled="!valid"
             color="deep-orange darken-4 white--text"
             class="mr-4"
-            @click="validate"
             >
             Validate
             </v-btn>
@@ -74,20 +69,8 @@ export default {
     data: () => ({
       valid: true,
       name: '',
-      nameRules: [
-        v => !!v || 'Full Name is required',
-        v => (v && v.length <= 30) || 'Name must be less than 30 characters',
-      ],
       password: '',
-      passwordRules: [
-        v => !!v || 'Full Name is required',
-        v => (v && v.length <= 30) || 'Name must be less than 30 characters',
-      ],
       email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
       select: null,
       items: [
         'seller',
@@ -102,9 +85,6 @@ export default {
       },
       reset () {
         this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
       },
     },
 }

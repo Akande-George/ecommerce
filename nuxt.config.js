@@ -36,10 +36,35 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
 
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+    // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+    axios: {
+      proxy: true,
+    },
+  
+    proxy: {
+      '/api/': { target: 'https://schon-api.herokuapp.com/user/auth/login', pathRewrite: {'^/api/': ''} }
+    },
+  
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'https://schon-api.herokuapp.com/user/auth/login', method: 'post', propertyName: 'token' }
+        },
+          user: { url: 'https://schon-api.herokuapp.com/user/auth/login', method: 'get', propertyName: false },
+          logout: false
+
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true
+      }
+    }
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
